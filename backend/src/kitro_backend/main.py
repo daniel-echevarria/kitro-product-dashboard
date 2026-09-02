@@ -34,7 +34,7 @@ def health():
 @app.get("/products", response_model=ProductListResponse)
 def read_products(
     session: SessionDep,
-    skip: int = 0,
+    skip: Annotated[int, Query(ge=0)] = 0,
     limit: Annotated[int, Query(ge=1, le=100)] = 10,
     search: str | None = None,
     sort_by: str | None = None,

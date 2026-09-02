@@ -56,6 +56,11 @@ def test_get_products_invalid_limit():
     assert response.status_code == 422
 
 
+def test_get_products_invalid_skip():
+    response = client.get("/products?skip=-1")
+    assert response.status_code == 422
+
+
 def test_get_metrics():
     response = client.get("/metrics")
     assert response.status_code == 200
