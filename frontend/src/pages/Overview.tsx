@@ -29,13 +29,13 @@ export const OverviewPage = () => {
         <MetricCard
           label="Total Products Sold"
           value={metrics.total_sold.toLocaleString()}
-          color="border-amber-500"
+          color="border-[#ED695F]"
           icon={ShoppingCart}
         />
         <MetricCard
           label="Total Products Available"
           value={metrics.total_available.toLocaleString()}
-          color="border-blue-500"
+          color="border-[#507E6A]"
           icon={Package}
         />
         <MetricCard
@@ -44,7 +44,7 @@ export const OverviewPage = () => {
             style: 'currency',
             currency: 'EUR',
           })}
-          color="border-green-500"
+          color="border-[#FFDA47]"
           icon={Euro}
         />
       </div>

@@ -63,7 +63,7 @@ def read_products(
     return {"items": products, "total": total}
 
 
-SWISS_FOOD_VAT_RATE = 0.026
+FOOD_VAT_RATE = 0.07
 
 
 @app.get("/metrics")
@@ -73,7 +73,7 @@ def read_metrics(session: SessionDep):
     total_gains_after_taxes = (
         session.exec(
             select(
-                func.sum(Product.total_sold * Product.price * (1 - SWISS_FOOD_VAT_RATE))
+                func.sum(Product.total_sold * Product.price * (1 - FOOD_VAT_RATE))
             )
         ).one()
         or 0
