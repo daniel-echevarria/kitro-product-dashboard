@@ -10,16 +10,23 @@ type Metrics = {
 
 export const OverviewPage = () => {
   const [metrics, setMetrics] = useState<Metrics | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const getMetrics = async () => {
-      const metrics = await fetch(`${import.meta.env.VITE_API_URL}/metrics`);
-      const res = await metrics.json();
-      setMetrics(res);
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/metrics`);
+        if (!response.ok) throw new Error(`Server error: ${response.status}`);
+        const res = await response.json();
+        setMetrics(res);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load metrics');
+      }
     };
     getMetrics();
   }, []);
 
+  if (error) return <p className="text-red-500">Error: {error}</p>;
   if (!metrics) return <p className="text-gray-500">Loading...</p>;
 
   return (
@@ -29,13 +36,13 @@ export const OverviewPage = () => {
         <MetricCard
           label="Total Products Sold"
           value={metrics.total_sold.toLocaleString()}
-          color="border-amber-500"
+          color="bg-[#F9F0F4]"
           icon={ShoppingCart}
         />
         <MetricCard
           label="Total Products Available"
           value={metrics.total_available.toLocaleString()}
-          color="border-blue-500"
+          color="bg-[#F3F3EF]"
           icon={Package}
         />
         <MetricCard
@@ -44,7 +51,7 @@ export const OverviewPage = () => {
             style: 'currency',
             currency: 'EUR',
           })}
-          color="border-green-500"
+          color="bg-[#C6e6e3]/30"
           icon={Euro}
         />
       </div>

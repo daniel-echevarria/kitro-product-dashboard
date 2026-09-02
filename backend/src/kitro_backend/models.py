@@ -16,3 +16,8 @@ class Product(ProductBase, table=True):
 
 class ProductPublic(ProductBase):
     id: int
+
+
+class ProductListResponse(SQLModel):
+    items: list[ProductPublic]
+    total: int

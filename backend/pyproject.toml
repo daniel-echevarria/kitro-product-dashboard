@@ -1,19 +1,24 @@
 [project]
 name = "kitro-backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "Backend API for the KITRO Product Dashboard"
 readme = "README.md"
 authors = [{ name = "Daniel Echevarria", email = "dan.echevarri@gmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
-    "faker>=40.37.0",
     "fastapi[standard]>=0.141.1",
     "psycopg[binary]>=3.3.5",
     "python-dotenv>=1.2.3",
     "sqlmodel>=0.0.42",
 ]
 
-
 [build-system]
 requires = ["uv_build>=0.12.7,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "faker>=40.37.0",
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
