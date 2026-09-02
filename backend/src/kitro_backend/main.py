@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import col, func, select
 
 from kitro_backend.database import SessionDep, create_db_and_tables
-from kitro_backend.models import Product
+from kitro_backend.models import Product, ProductListResponse
 
 
 @asynccontextmanager
@@ -31,7 +31,7 @@ def health():
     return {"status": "ok"}
 
 
-@app.get("/products")
+@app.get("/products", response_model=ProductListResponse)
 def read_products(
     session: SessionDep,
     skip: int = 0,
@@ -72,9 +72,7 @@ def read_metrics(session: SessionDep):
     total_available = session.exec(select(func.sum(Product.stock_quantity))).one() or 0
     total_gains_after_taxes = (
         session.exec(
-            select(
-                func.sum(Product.total_sold * Product.price * (1 - FOOD_VAT_RATE))
-            )
+            select(func.sum(Product.total_sold * Product.price * (1 - FOOD_VAT_RATE)))
         ).one()
         or 0
     )

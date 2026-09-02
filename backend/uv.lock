@@ -412,21 +412,26 @@ name = "kitro-backend"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
-    { name = "faker" },
     { name = "fastapi", extra = ["standard"] },
     { name = "psycopg", extra = ["binary"] },
     { name = "python-dotenv" },
     { name = "sqlmodel" },
 ]
 
+[package.optional-dependencies]
+dev = [
+    { name = "faker" },
+]
+
 [package.metadata]
 requires-dist = [
-    { name = "faker", specifier = ">=40.37.0" },
+    { name = "faker", marker = "extra == 'dev'", specifier = ">=40.37.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.141.1" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.5" },
     { name = "python-dotenv", specifier = ">=1.2.3" },
     { name = "sqlmodel", specifier = ">=0.0.42" },
 ]
+provides-extras = ["dev"]
 
 [[package]]
 name = "markdown-it-py"

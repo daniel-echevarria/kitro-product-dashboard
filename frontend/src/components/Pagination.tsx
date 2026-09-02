@@ -17,13 +17,15 @@ export const Pagination = ({
   return (
     <div className="flex items-center justify-between">
       <p className="text-sm text-gray-500">
-        Showing {(page - 1) * limit + 1}–{Math.min(page * limit, totalProducts)} of {totalProducts}
+        {totalProducts === 0
+          ? 'No results'
+          : `Showing ${(page - 1) * limit + 1}–${Math.min(page * limit, totalProducts)} of ${totalProducts}`}
       </p>
       <div className="flex gap-2">
         <button
           onClick={onPrevious}
           disabled={page <= 1}
-          className="px-3 py-1 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="px-3 py-1 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 cursor-pointer"
         >
           Previous
         </button>
@@ -33,7 +35,7 @@ export const Pagination = ({
         <button
           onClick={onNext}
           disabled={page >= totalPages}
-          className="px-3 py-1 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="px-3 py-1 border rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 cursor-pointer"
         >
           Next
         </button>

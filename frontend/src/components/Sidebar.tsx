@@ -6,8 +6,11 @@ export const Sidebar = () => {
       <h1 className="text-2xl font-bold text-[#ED695F] mb-8">KITRO</h1>
       <NavLink
         to="/"
+        end
         className={({ isActive }) =>
-          isActive ? 'text-[#ED695F] font-semibold' : 'text-gray-300 hover:text-white'
+          isActive
+            ? 'text-white font-semibold border-l-3 border-[#507E6A] pl-3'
+            : 'text-gray-300 hover:text-white border-l-3 border-transparent pl-3'
         }
       >
         Overview
@@ -15,7 +18,9 @@ export const Sidebar = () => {
       <NavLink
         to="/products"
         className={({ isActive }) =>
-          isActive ? 'text-[#ED695F] font-semibold' : 'text-gray-300 hover:text-white'
+          isActive
+            ? 'text-white font-semibold border-l-3 border-[#507E6A] pl-3'
+            : 'text-gray-300 hover:text-white border-l-3 border-transparent pl-3'
         }
       >
         Products
