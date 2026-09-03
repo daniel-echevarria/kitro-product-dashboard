@@ -36,6 +36,15 @@ Then open [http://localhost:5173](http://localhost:5173).
 
 > The provided environment configuration points to a pre-seeded Neon PostgreSQL database so the application can be run without setting up a database locally. In a production environment, database credentials would be managed through secure environment variables or a secrets manager rather than committed to the repository.
 
+## Scope
+
+Following the junior track, this implements 8 user stories:
+
+- **1** — Persistent sidebar with Overview / Products navigation
+- **2** — KITRO brand palette (from the assignment) applied consistently across the app
+- **6, 7, 8** — Overview page: total products sold, total available, total gains after taxes
+- **14, 15, 16** — Products page: searchable table, pagination, sort by name and price
+
 ## Implementation Notes
 
 - Product filtering, sorting, and pagination are handled server-side through query parameters
